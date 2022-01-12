@@ -53,7 +53,7 @@ O_FILES = $(SRCS:.c=.o)
 
 LIBFT = libft.a
 
-FLAGS = -Wall -Werror -Werror
+FLAGS = -Wall -Werror -Wextra
 
 HEADER = ft_printf.h
 
