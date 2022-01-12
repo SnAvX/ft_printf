@@ -3,10 +3,22 @@
 
 void	check_identifier(const char *line, int **i, t_struct *info)
 {
-	if (line[**i] && (line[**i] == 'c' || line[**i] == 's' || line[**i] == 'p' ||
-		line[**i] == 'd' || line[**i] == 'i' || line[**i] == 'u' ||
-		line[**i] == 'u' || line[**i] == 'x' || line[**i] == 'X' ||
-		line[**i] == '%'))
+	if (line[**i] && (line[**i] == 'c' || line[**i] == 's' || line[**i] == 'p'))
+	{
+		info->identifier = line[**i];
+		**i += 1;
+	}
+	else if (line [**i] && (line[**i] == 'd' || line[**i] == 'i'))
+	{
+		info->identifier = line[**i];
+		**i += 1;
+	}
+	else if (line [**i] && (line[**i] == 'u' || line[**i] == 'u'))
+	{
+		info->identifier = line[**i];
+		**i += 1;
+	}
+	else if (line && (line[**i] == 'x' || line[**i] == 'X' || line[**i] == '%'))
 	{
 		info->identifier = line[**i];
 		**i += 1;
@@ -25,12 +37,17 @@ void	precision_check(const char *line, t_struct *info, va_list arg, int **i)
 			info->check = 1;
 			info->precision = va_arg(arg, int);
 			info->pre_save = info->precision;
-			if(info->precision == 0)
+			if (info->precision == 0)
 				info->precision = -1;
 		}
 		else
-			info->precision = ft_atoi(&line[**i]) != 0 ? ft_atoi(&line[**i]) : -1;
-		while (line[**i] && ((line[**i] >= '0' && line[**i]<= '9') || line[**i] == '*'))
+		{
+			if (ft_atoi(&line[**i]) != 0)
+				info->precision = ft_atoi(&line[**i]);
+			else
+				info->precision = -1;
+		}
+		while (line && (('9' >= line[**i] >= '0') || line[**i] == '*'))
 			**i += 1;
 	}
 }
@@ -48,8 +65,7 @@ void	width_check(const char *line, t_struct *info, va_list arg, int **i)
 			info->flag = '-';
 		}
 	}
-	while (line[**i] && ((line[**i] >= '0' && line[**i] <= '9' ) ||
-		line[**i] == '*'))
+	while (line[**i] && (('9'>= line[**i] >= '0') || line[**i] == '*'))
 		**i += 1;
 }
 
