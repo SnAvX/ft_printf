@@ -14,9 +14,10 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char *s;
+	char	*s;
 
-	if (!(s = malloc(nmemb * size)))
+	s = malloc(nmemb * size);
+	if (s == NULL)
 		return (NULL);
 	ft_memset(s, 0, nmemb * size);
 	return (s);

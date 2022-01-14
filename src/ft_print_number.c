@@ -15,8 +15,8 @@ int	nb_left(t_struct *info, int nb, int size)
 		ft_putchar_fd('-', 1);
 		y += ft_putchar_fd_return('0', 1);
 	}
-	if ((info->width > 0 && nb < 0 && z == 0 && info->flag =='0')
-	|| (nb < 0 && z >= size))
+	if ((info->width > 0 && nb < 0 && z == 0 && info->flag == '0')
+		|| (nb < 0 && z >= size))
 		nb = -nb;
 	while (info->precision-- - size > 0)
 		y += ft_putchar_fd_return('0', 1);
@@ -26,8 +26,8 @@ int	nb_left(t_struct *info, int nb, int size)
 		y += ft_putchar_fd_return(' ', 1);
 	while (info->width-- > 0)
 		y += ft_putchar_fd_return(' ', 1);
-	return (y); 
-} 
+	return (y);
+}
 
 int	nb_right(t_struct *info, int nb, char c, int size)
 {
@@ -47,11 +47,11 @@ int	nb_right(t_struct *info, int nb, char c, int size)
 		ft_putchar_fd('-', 1);
 		x += ft_putchar_fd_return('0', 1);
 	}
-	while (info->precision-- -size > 0)
+	while (info->precision-- - size > 0)
 		x += ft_putchar_fd_return('0', 1);
 	if ((nb < 0 && z > 0 && y == 0 && info->flag == '0')
-	|| (y >= size && nb < 0) ||
-	( nb < 0 && info->pre_save <= -1 && info->flag == '0'))
+		|| (y >= size && nb < 0)
+		|| (nb < 0 && info->pre_save <= -1 && info->flag == '0'))
 		nb = -nb;
 	if (!(y == -1 && nb == 0))
 		ft_putnbr_fd(nb, 1, 0);
@@ -65,7 +65,7 @@ int	size_len(int nb)
 	i = 0;
 	if (nb == 0)
 		return (1);
-	if (nb < 0 )
+	if (nb < 0)
 	{
 		nb = -nb;
 		i++;
@@ -93,14 +93,14 @@ void	ft_nb_cut(int nb, t_struct *info, int *size)
 		*size = *size + 1;
 	}
 	if (nb < 0 && info->pre_save <= -1 && info->flag == '0')
-		ft_putchar_fd('-',1);
+		ft_putchar_fd('-', 1);
 }
 
 int	ft_print_nb(int nb, t_struct *info)
 {
-	int	z;
-	int	size;
-	int	size_save;
+	int		z;
+	int		size;
+	int		size_save;
 	char	c;
 
 	z = 0;

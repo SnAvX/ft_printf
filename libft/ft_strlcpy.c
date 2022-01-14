@@ -6,7 +6,7 @@
 /*   By: plebiez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 12:25:37 by plebiez           #+#    #+#             */
-/*   Updated: 2020/11/23 06:11:19 by plebiez          ###   ########.fr       */
+/*   Updated: 2022/01/14 02:13:42 by paullebiez       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
-	size_t i;
-	size_t l;
+	size_t	i;
+	size_t	l;
 
 	l = ft_strlen(src);
 	if (size == 0)

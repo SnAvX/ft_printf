@@ -4,6 +4,7 @@
 int	ft_left_char(char a, int size, t_struct *info)
 {
 	int	i;
+
 	i = 0;
 	if ((info->width > 0 && a == '%') || (info->precision > 0 && a == '%'))
 	{
@@ -55,10 +56,10 @@ int	ft_right_char(char a, int size, t_struct *info, char c)
 
 int	ft_print_char(char a, t_struct *info)
 {
-	int	size;
-	int	size_left;
+	int		size;
+	int		size_left;
 	char	c;
-	int	b;
+	int		b;
 
 	b = 0;
 	c = ' ';
@@ -75,5 +76,5 @@ int	ft_print_char(char a, t_struct *info)
 		b = ft_left_char(a, size, info);
 	else
 		b = ft_right_char(a, size, info, c);
-	return(size + b);
+	return (size + b);
 }

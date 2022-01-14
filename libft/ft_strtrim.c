@@ -6,47 +6,61 @@
 /*   By: plebiez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 12:27:14 by plebiez           #+#    #+#             */
-/*   Updated: 2020/11/22 12:27:16 by plebiez          ###   ########.fr       */
+/*   Updated: 2022/01/14 02:28:09 by paullebiez       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	is_in_set(char c, char const *set)
+int	ft_getstart(const char *s1, const char *set)
 {
-	while (*set)
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1);
+	i = 0;
+	while (i < len)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		if (ft_strchr(set, s1[i]) == 0)
+			break ;
+		i++;
 	}
-	return (0);
+	return (i);
 }
 
-char				*ft_strtrim(char const *s1, char const *set)
+int	ft_getend(const char *s1, const char *set)
 {
-	int				i;
-	unsigned int	outstr_size;
-	char			*outstr_start;
-	char			*outstr_end;
-	char			*outstr;
+	size_t	len;
+	size_t	i;
 
-	if (!s1 || !set)
-		return (NULL);
+	len = ft_strlen(s1);
 	i = 0;
-	while (s1[i] && is_in_set(s1[i], set))
+	while (i < len)
+	{
+		if (ft_strchr(set, s1[len - i - 1]) == 0)
+			break ;
 		i++;
-	outstr_start = (char *)&s1[i];
-	if ((i = ft_strlen(s1) - 1) != -1)
-		while (i >= 0 && is_in_set(s1[i], set))
-			i--;
-	outstr_end = (char *)&s1[i];
-	if (!*s1 || outstr_end == outstr_start)
-		outstr_size = 2;
-	else
-		outstr_size = outstr_end - outstr_start + 2;
-	if (!(outstr = malloc(sizeof(char) * outstr_size)))
+	}
+	return (len - i);
+}
+
+char	*ft_strtrim(char *s1, char const *set)
+{
+	int		start;
+	int		end;
+	char	*newstr;
+
+	if (s1 == NULL)
 		return (NULL);
-	ft_strlcpy(outstr, outstr_start, outstr_size);
-	return (outstr);
+	if (set == NULL)
+		return (ft_strdup(s1));
+	start = ft_getstart(s1, set);
+	end = ft_getend(s1, set);
+	if (start >= end)
+		return (ft_strdup(""));
+	newstr = (char *)malloc(sizeof(char) * (end - start + 1));
+	if (newstr == NULL)
+		return (NULL);
+	ft_strlcpy(newstr, s1 + start, end - start + 1);
+	return (newstr);
 }

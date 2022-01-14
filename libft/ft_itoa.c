@@ -6,35 +6,60 @@
 /*   By: plebiez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 12:09:08 by plebiez           #+#    #+#             */
-/*   Updated: 2020/11/23 05:30:03 by plebiez          ###   ########.fr       */
+/*   Updated: 2022/01/14 02:29:32 by paullebiez       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*ft_array(char *x, unsigned int number, long int len)
+{
+	while (number > 0)
+	{
+		x[len--] = 48 + (number % 10);
+		number = number / 10;
+	}
+	return (x);
+}
+
+static long int	ft_len(int n)
+{
+	int					len;
+
+	len = 0;
+	if (n <= 0)
+		len = 1;
+	while (n != 0)
+	{
+		len++;
+		n = n / 10;
+	}
+	return (len);
+}
+
 char	*ft_itoa(int n)
 {
-	long	nb;
-	size_t	len;
-	char	*str;
+	char				*x;
+	long int			len;
+	unsigned int		number;
+	int					sign;
 
-	nb = n;
-	len = (n > 0) ? 0 : 1;
-	nb = (nb > 0) ? nb : -nb;
-	while (n)
-		n = len++ ? n / 10 : n / 10;
-	str = (char *)malloc(sizeof(str) * len + 1);
-	if (!str)
+	sign = 1;
+	len = ft_len(n);
+	x = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(x))
 		return (NULL);
-	*(str + len--) = '\0';
-	while (nb > 0)
+	x[len--] = '\0';
+	if (n == 0)
+		x[0] = '0';
+	if (n < 0)
 	{
-		*(str + len--) = nb % 10 + '0';
-		nb /= 10;
+		sign *= -1;
+		number = n * -1;
+		x[0] = '-';
 	}
-	if (len == 0 && str[1] == '\0')
-		*(str + len) = '0';
-	if (len == 0 && str[1] != '\0')
-		*(str + len) = '-';
-	return (str);
+	else
+		number = n;
+	x = ft_array(x, number, len);
+	return (x);
 }

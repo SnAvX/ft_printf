@@ -6,7 +6,7 @@
 /*   By: plebiez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 12:26:08 by plebiez           #+#    #+#             */
-/*   Updated: 2020/11/23 06:15:42 by plebiez          ###   ########.fr       */
+/*   Updated: 2022/01/14 03:40:31 by paullebiez       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s || !f)
 		return (NULL);
 	len = ft_strlen(s);
-	if (!(out_str = malloc(sizeof(char) * (len + 1))))
+	out_str = malloc(sizeof(char) * (len + 1));
+	if (out_str == NULL)
 		return (NULL);
 	i = 0;
 	while (s[i])

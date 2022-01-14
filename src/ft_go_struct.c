@@ -47,8 +47,11 @@ void	precision_check(const char *line, t_struct *info, va_list arg, int **i)
 			else
 				info->precision = -1;
 		}
-		while (line && ((line[**i] >= '0' && line[**i] <= '9') || line[**i] == '*'))
-			**i += 1;
+		while (line[**i])
+		{
+			if ((line[**i] >= '0' && line[**i] <= '9') || line[**i] == '*')
+				**i += 1;
+		}
 	}
 }
 
@@ -69,27 +72,26 @@ void	width_check(const char *line, t_struct *info, va_list arg, int **i)
 		**i += 1;
 }
 
-void	flag_check(const char *line, t_struct *info , int **i)
+void	flag_check(const char *line, t_struct *info, int **i)
 {
-	if (line[**i] == '-') //Left justify
+	if (line[**i] == '-')
 	{
 		info->flag = '-';
 		while (line[**i] && (line[**i] == '-' || line[**i] == '0'))
 			**i += 1;
-		return;
+		return ;
 	}
 	if (line[**i] == '0')
 	{
 		info->flag = '0';
 		while (line[**i] && (line[**i] == '0' || line[**i] == '-'))
 		{
-			if(line[**i] == '-')
+			if (line[**i] == '-')
 				info->flag = '-';
 			**i += 1;
 		}
-		return;
+		return ;
 	}
-	
 }
 
 void	init_info(t_struct *info)

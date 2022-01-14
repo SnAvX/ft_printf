@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int i;
-	int sign;
-	int num;
+	int	i;
+	int	sign;
+	int	num;
 
 	i = 0;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'

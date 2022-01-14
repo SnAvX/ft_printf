@@ -9,10 +9,10 @@ int	ft_left_string(char *str, t_struct *info, int size)
 	i = 0;
 	j = 0;
 	if (info->precision > 0)
-		while(i < info->precision && str[i])
+		while (i < info->precision && str[i])
 			j += ft_putchar_fd_return(str[i++], 1);
 	else
-		while(str[i])
+		while (str[i])
 			j += ft_putchar_fd_return(str[i++], 1);
 	if (info->precision >= size)
 		while (info->width-- + info->precision - size > 0)
@@ -27,7 +27,6 @@ int	ft_left_string(char *str, t_struct *info, int size)
 			j += ft_putchar_fd_return(' ', 1);
 	return (j);
 }
-
 
 int	ft_right_string(char *str, t_struct *info, int size, char c)
 {
@@ -81,9 +80,9 @@ char	ft_cut_str(char *str, t_struct *info)
 
 int	ft_print_string(char *str, t_struct *info)
 {
-	int	size;
-	int	size_str;
-	int	i;
+	int		size;
+	int		size_str;
+	int		i;
 	char	c;
 
 	i = 0;
@@ -102,8 +101,8 @@ int	ft_print_string(char *str, t_struct *info)
 		size_str = info->precision;
 	info->width = info->width - size_str;
 	i = ft_print_lr_string(info, str, &size, &c);
-	if ((info->precision == -1 && info->pre_save == 0) || info->x == 1 ||
-	 (str[0] == '(' && str[1] == 'n') || !str)
+	if ((info->precision == -1 && info->pre_save == 0)
+		|| info->x == 1 || (str[0] == '(' && str[1] == 'n') || !str)
 		free(str);
 	return (i);
 }

@@ -1,9 +1,9 @@
 #include "../include/ft_printf.h"
 #include "../libft/libft.h"
 
-void	ft_printmore_hexa(t_struct *info,unsigned long long int *nb, int *k, int *j)
+void	ft_more(t_struct *info, unsigned long long int *nb, int *k, int *j)
 {
-	int	i;
+	int		i;
 	char	*str;
 
 	i = 0;
@@ -33,34 +33,34 @@ int	ft_left_hexa(t_struct *info, unsigned long long int nb, int size)
 	}
 	while (info->precision-- - size > 0)
 		j += ft_putchar_fd_return('0', 1);
-	ft_printmore_hexa(info, &nb, &k, &j);
+	ft_more(info, &nb, &k, &j);
 	while (info->width-- > 0)
 		j += ft_putchar_fd_return(' ', 1);
 	return (j);
 }
 
-int	ft_right_hexa(t_struct *info, unsigned long long int nb, int size, char c)
+int	ft_right(t_struct *info, unsigned long long int nb, int size, char c)
 {
-        int     i;
-        int     j;
-        int     k;
+	int	i;
+	int	j;
+	int	k;
 
-        k = info->precision;
-        i = 0;
-        j = 0;
-        if (info->pre_save == -1 && nb == 0)
-        {
-                info->precision = 2;
-                info->width--;
-        }
-       if (info->precision > 0 && info->flag == '0' && info->width > 0)
-        	while (info->width-- > 0)
+	k = info->precision;
+	i = 0;
+	j = 0;
+	if (info->pre_save == -1 && nb == 0)
+	{
+		info->precision = 2;
+		info->width--;
+	}
+	if (info->precision > 0 && info->flag == '0' && info->width > 0)
+		while (info->width-- > 0)
 			j += ft_putchar_fd_return(c, 1);
 	while (info->width-- > 0)
 		j += ft_putchar_fd_return(c, 1);
-        while (info->precision-- - size > 0)
-                j += ft_putchar_fd_return('0', 1);
-        ft_printmore_hexa(info, &nb, &k, &j);
+	while (info->precision-- - size > 0)
+		j += ft_putchar_fd_return('0', 1);
+	ft_more(info, &nb, &k, &j);
 	return (j);
 }
 
@@ -84,16 +84,16 @@ int	count_hexa(unsigned long long int nb)
 
 int	ft_print_hexa(long long int nb, t_struct *info)
 {
-	int	size;
-	int	size_save;
+	int		size;
+	int		size_save;
 	char	c;
-	int	i;
+	int		i;
 
 	i = 0;
 	c = ' ';
-	if (info->precision == -1 && info->width > 0 && nb ==0)
+	if (info->precision == -1 && info->width > 0 && nb == 0)
 		info->width = info->width + 1;
-	if (info->flag == '0' && (info->precision == 0 || info->pre_save <= -1 ))
+	if (info->flag == '0' && (info->precision == 0 || info->pre_save <= -1))
 		c = '0';
 	size = count_hexa(nb);
 	if (nb == 0)
@@ -105,6 +105,6 @@ int	ft_print_hexa(long long int nb, t_struct *info)
 	if (info->flag == '-')
 		i = ft_left_hexa(info, nb, size);
 	else
-		i = ft_right_hexa(info, nb, size, c);
+		i = ft_right(info, nb, size, c);
 	return (i);
 }

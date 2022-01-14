@@ -1,7 +1,7 @@
 #include "../include/ft_printf.h"
 #include "../libft/libft.h"
 
-int	len_u(unsigned int nb,char *c, t_struct *info)
+int	len_u(unsigned int nb, char *c, t_struct *info)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	ft_right_unsint(int nb, t_struct *info, int size, char c)
 		i--;
 	if (info->pre_save >= 0 && info->check == 1 && nb == 0)
 		i--;
-	if (info->flag == '0' && info->width > 0 &&  info->precision > 0)
+	if (info->flag == '0' && info->width > 0 && info->precision > 0)
 		while (info->width-- > 0)
 			i += ft_putchar_fd_return(' ', 1);
 	while (info->width-- > 0)
@@ -73,7 +73,7 @@ void	ft_cut_unsint(t_struct *info, int nb, int *size, int *i)
 	}
 	if (info->flag == 0 && info->check == 1 && info->pre_save == 0 && nb == 0)
 		info->width++;
-	if (info->flag == '0' && info->check == 1 && info->pre_save == 0 && nb == 0 )
+	if (info->flag == '0' && info->check == 1 && info->pre_save == 0 && nb == 0)
 	{
 		*i = *i + 1;
 		info->width++;
@@ -92,10 +92,10 @@ void	ft_cut_unsint(t_struct *info, int nb, int *size, int *i)
 
 int	ft_print_unsint(unsigned int nb, t_struct *info)
 {
-	int	size;
-	int	save_size;
+	int		size;
+	int		save_size;
 	char	c;
-	int	i;
+	int		i;
 
 	i = 0;
 	c = ' ';

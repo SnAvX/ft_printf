@@ -32,7 +32,6 @@ O_LIBFT = ./libft/ft_atoi.o\
 	  ./libft/ft_putnbr_fd.o\
 	  ./libft/ft_putnbr_unsigned.o\
 	  ./libft/ft_putstr_fd.o\
-	  ./libft/ft_split.o\
 	  ./libft/ft_strchr.o\
 	  ./libft/ft_strdup.o\
 	  ./libft/ft_strjoin.o\
